@@ -1,6 +1,8 @@
 # RankMe-Tag
 RankMe-Addon 
-Only test under CSGO
+[FORK Note]**I tested this plugin in my LAN only server so if you have any type of issue, feel free to create an issue**
+
+Only tested in CSGO
 
 Base on RankMe 3.0.3
 https://github.com/benscobie/sourcemod-rankme
