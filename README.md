@@ -14,7 +14,7 @@ https://forums.alliedmods.net/showthread.php?t=155621
 
 
 My steam
-hhtps://steamcommunity.com/id/cruze_03
+https://steamcommunity.com/id/cruze_03
 
 Original Author's Steam
 http://steamcommunity.com/id/_xQy_/
