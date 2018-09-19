@@ -54,7 +54,7 @@ public Action RankMe_OnPlayerLoaded(int client)
 
 public int GetClientRankCallback(int client, int rank, any data)
 {
-	if(rank == 0 || rank > 1000)
+	if(rank == 0)
 		strcopy(g_szClantag[client], 32, "");
 	else if(rank < 100)
 		Format(g_szClantag[client], 32, "[Rank %d]", rank);
