@@ -11,7 +11,7 @@ public Plugin myinfo =
 	name = "RankMe Clantag",
 	author = "maoling ( xQy ), Cruze.",
 	description = "",
-	version = "1.3.5",
+	version = "1.3.6",
 	url = "http://steamcommunity.com/id/_xQy_/"
 };
 
@@ -24,15 +24,14 @@ public void OnAllPluginsLoaded()
 }
 public Action Event_RoundEnd(Handle event, const char[] name, bool dontBroadcast)
 {
-	for(int client = 1; client <= MaxClients; ++client)
+	for(int client = 1; client <= MaxClients; client++)
 	{
-		if(!IsClientInGame(client))
+		if(!IsClientInGame(client) || !GetClientTeam(client))
 			continue;
-		
-		if(!GetClientTeam(client))
-			continue;
-		
-		CS_SetClientClanTag(client, g_szClantag[client]);
+
+		strcopy(g_szClantag[client], 32, "Reloading your rank...");
+		RankMe_GetRank(client, GetClientRankCallback);
+		CreateTimer(0.4, Timer_SetTag);
 	}
 }
 public void OnLibraryRemoved(const char[] name)
@@ -44,7 +43,7 @@ public void OnLibraryRemoved(const char[] name)
 public void OnClientPostAdminCheck(int client)
 {
 	CreateTimer(1.0, Timer_SetTag);
-	strcopy(g_szClantag[client], 32, "");
+	strcopy(g_szClantag[client], 32, "Loading...");
 }
 
 public Action RankMe_OnPlayerLoaded(int client)
@@ -55,7 +54,7 @@ public Action RankMe_OnPlayerLoaded(int client)
 public int GetClientRankCallback(int client, int rank, any data)
 {
 	if(rank == 0)
-		strcopy(g_szClantag[client], 32, "");
+		strcopy(g_szClantag[client], 32, "[No Rank]");
 	else if(rank < 100)
 		Format(g_szClantag[client], 32, "[Rank %d]", rank);
 	else
@@ -66,10 +65,7 @@ public Action Timer_SetTag(Handle timer)
 {	
 	for(int client = 1; client <= MaxClients; ++client)
 	{
-		if(!IsClientInGame(client))
-			continue;
-		
-		if(!GetClientTeam(client))
+		if(!IsClientInGame(client) || !GetClientTeam(client))
 			continue;
 
 		CS_SetClientClanTag(client, g_szClantag[client]);
