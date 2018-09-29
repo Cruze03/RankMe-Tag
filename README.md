@@ -1,10 +1,11 @@
 # RankMe-Tag
 
-RankMe-Addon 
+RankMe-Addon
 
-[FORK Note]**I tested this plugin in my LAN only server so if you have any type of issue, feel free to create an issue**
+Tested in CSGO.
 
-Only tested in CSGO
+Kento's Rankme
+https://github.com/rogeraabbccdd/Kento-Rankme/
 
 Base on RankMe 3.0.3
 https://github.com/benscobie/sourcemod-rankme
