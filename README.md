@@ -7,12 +7,15 @@
 [Fork] Tested in CSGO.
 
 [Fork] Kento's Rankme
+
 [Fork] https://github.com/rogeraabbccdd/Kento-Rankme/
 
 Base on RankMe 3.0.3
+
 https://github.com/benscobie/sourcemod-rankme
 
 Old version 2.8.3 by lokizito for CSS 
+
 https://forums.alliedmods.net/showthread.php?t=155621
 
 
