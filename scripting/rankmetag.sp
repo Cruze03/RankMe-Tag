@@ -10,7 +10,7 @@ public Plugin myinfo =
 {
 	name = "RankMe Clantag",
 	author = "maoling ( xQy ), Cruze.",
-	description = "",
+	description = "Rankme's rank in scoreboard.",
 	version = "1.3.6",
 	url = "http://steamcommunity.com/id/_xQy_/"
 };
@@ -26,12 +26,11 @@ public Action Event_RoundEnd(Handle event, const char[] name, bool dontBroadcast
 {
 	for(int client = 1; client <= MaxClients; client++)
 	{
-		if(!IsClientInGame(client) || !GetClientTeam(client))
+		if(!IsClientInGame(client) || !GetClientTeam(client) || IsFakeClient(client))
 			continue;
 
-		strcopy(g_szClantag[client], 32, "Reloading your rank...");
 		RankMe_GetRank(client, GetClientRankCallback);
-		CreateTimer(0.4, Timer_SetTag);
+		CreateTimer(1.0, Timer_SetTag);
 	}
 }
 public void OnLibraryRemoved(const char[] name)
@@ -42,8 +41,11 @@ public void OnLibraryRemoved(const char[] name)
 
 public void OnClientPostAdminCheck(int client)
 {
-	CreateTimer(1.0, Timer_SetTag);
-	strcopy(g_szClantag[client], 32, "Loading...");
+	if(!IsFakeClient(client))
+	{
+		strcopy(g_szClantag[client], 32, "Loading...");
+		CreateTimer(1.0, Timer_SetTag);
+	}
 }
 
 public Action RankMe_OnPlayerLoaded(int client)
@@ -55,7 +57,7 @@ public int GetClientRankCallback(int client, int rank, any data)
 {
 	if(rank == 0)
 		strcopy(g_szClantag[client], 32, "[No Rank]");
-	else if(rank < 100)
+	else if(rank < 10000)
 		Format(g_szClantag[client], 32, "[Rank %d]", rank);
 	else
 		Format(g_szClantag[client], 32, "[R-%d]", rank);
